@@ -1,0 +1,7 @@
+noip:
+  restart: unless-stopped
+  container_name: noip
+  image: coppit/no-ip
+  volumes:
+    - noip:/config
+    - /etc/localtime:/etc/localtime

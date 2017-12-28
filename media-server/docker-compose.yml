@@ -1,0 +1,42 @@
+Huversion: '2'
+services:
+    plex:
+        container_name: plex
+        image: timhaak/plex
+        restart: unless-stopped
+        ports:
+          - 32400:32400
+        volumes:
+          - /etc/localtime:/etc/localtime:ro
+          - ${HOME}/Docker/media-server/plex/config:/config
+          - ${HOME}/Docker/media-server/video:/data
+        environment:
+          - PLEX_DISABLE_SECURITY=0
+          # - PLEX_USERNAME=username
+          # - PLEX_PASSWORD=password
+          # - PLEX_TOKEN=token
+
+    sickrage:
+        container_name: sickrage
+        image: timhaak/sickrage
+        restart: always
+        volumes:
+          - ${HOME}/Docker/media-server/sickrage/config:/config
+          - ${HOME}/Docker/media-server/video:/data
+        ports:
+          - 8081:8081
+    transmission:
+      container_name: transmission
+      image: timhaak/transmission
+      restart: always
+      volumes:
+        - ${HOME}/Docker/media-server/transmission/config:/config
+        - ${HOME}/Docker/media-server/video:/downloads
+        - ${HOME}/Docker/media-server/transmission/incomplete:/incomplete
+        - ${HOME}/Docker/media-server/transmission/watchdir:/watchdir
+      ports:
+        - 45555:45555
+        - 9091:9091
+      environment:
+        - USERNAME=
+        - PASSWORD=

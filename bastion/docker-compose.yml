@@ -1,0 +1,12 @@
+bastion:
+  restart: unless-stopped
+  container_name: bastion
+  image: cloudposse/bastion
+  volumes:
+    - /Users/zAo/.ssh/bastion:/root/.ssh/
+  environment:
+    - MFA_PROVIDER=google-authenticator
+  cap_add:
+    - NET_ADMIN
+  ports:
+    - "22:22/tcp"

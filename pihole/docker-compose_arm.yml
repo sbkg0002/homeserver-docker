@@ -1,0 +1,15 @@
+pihole:
+  restart: unless-stopped
+  container_name: pihole
+  image: diginc/pi-hole:arm
+  volumes:
+    - ${PWD}/etc/:/etc/pihole/
+    - ${PWD}/dnsmasq.d/:/etc/dnsmasq.d/
+  environment:
+    - ServerIP=192.168.178.100
+  cap_add:
+    - NET_ADMIN
+  ports:
+    - "53:53/tcp"
+    - "53:53/udp"
+    - "80:80"
