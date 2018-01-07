@@ -1,7 +1,7 @@
 pihole:
   restart: unless-stopped
   container_name: pihole
-  image: diginc/pi-hole:arm
+  image: diginc/pi-hole-multiarch:debian_armhf
   volumes:
     - ${PWD}/etc/:/etc/pihole/
     - ${PWD}/dnsmasq.d/:/etc/dnsmasq.d/
